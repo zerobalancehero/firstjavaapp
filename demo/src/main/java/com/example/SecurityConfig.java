@@ -6,12 +6,16 @@ import org.springframework.security.web.SecurityFilterChain;
 
 public class SecurityConfig {
 
-    @Bean
+   @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/login", "/login.html").permitAll()
-            .anyRequest().authenticated();
+        http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/login", "/login.html", "/").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form.disable()); 
         return http.build();
     }
+
 }
