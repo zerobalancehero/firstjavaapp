@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-    
+
     @PostMapping("/login")
 public String login(@RequestParam String username, @RequestParam String password) {
     if ("sanjay".equals(username) && "secret".equals(password)) {
-        return "Login successful! 🎉 Welcome, " + username;
+        String token = JwtUtil.generateToken(username);
+        return "Login successful! 🎉 JWT Token: " + token;
     } else {
         return "Invalid credentials ❌";
     }
