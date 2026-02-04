@@ -7,6 +7,15 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
+    
+    @PostMapping("/login")
+public String login(@RequestParam String username, @RequestParam String password) {
+    if ("sanjay".equals(username) && "secret".equals(password)) {
+        return "Login successful! 🎉 Welcome, " + username;
+    } else {
+        return "Invalid credentials ❌";
+    }
+}
 
     @GetMapping("/")
     public String hello() {
