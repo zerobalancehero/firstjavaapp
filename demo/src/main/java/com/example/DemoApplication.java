@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class DemoApplication {
 
-    @PostMapping("/login")
+   @PostMapping("/api/login")
 public String login(@RequestParam String username, @RequestParam String password) {
     if ("sanjay".equals(username) && "secret".equals(password)) {
         String token = JwtUtil.generateToken(username);
